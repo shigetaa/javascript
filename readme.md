@@ -317,9 +317,37 @@ if (color === 'Blue') {
 }
 ```
 ### switch
-
+`switch` 文は「条件式」の評価結果の値に応じて処理を振り分けを行います。
+条件が当てはまった場合に処理を実行し、次の`break`でswitch文を終了させます。
+どの条件にも当てはまらない場合は、`default`のコードが実行され終了されます。
 ```javascript
+switch (条件式) {
+	case 値1:
+		// 条件式の値が、値1と同じ場合処理をする
+		break;
+	case 値2:
+		// 条件式の値が、値2と同じ場合処理をする
+		break;
+	default:
+		// 条件式の値が、どの case に当てはまらない場合処理をする
+		break;
+}
+```
+switch 文 利用例
+```javascript
+const color = 'Red'
 
+switch (color) {
+	case 'Blue':
+		console.log('Blue')
+		break;
+	case 'Black':
+		console.log('Black')
+		break;
+	default:
+		console.log(color) // Red 表示
+		break;
+}
 ```
 
 ### for
