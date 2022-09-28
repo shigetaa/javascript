@@ -333,7 +333,7 @@ switch (条件式) {
 		break;
 }
 ```
-switch 文 利用例
+switch 文 利用例1
 ```javascript
 const color = 'Red'
 
@@ -349,12 +349,177 @@ switch (color) {
 		break;
 }
 ```
+switch 文 利用例2
+`break`が無い場合、break が見つかるまでそのまま評価なしに`case`が実行されていきます。
+```bash
+vi switchNotBreak.js
+```
+```javascript
+const suuji = 1
 
+switch (suuji) {
+	case 0:
+		console.log('0')
+	case 1:
+		console.log('1') // 1 表示
+	case 2:
+		console.log('2') // 2 表示
+	default:
+		console.log('last') // last 表示
+}
+```
+```bash
+node switchNotBreak.js
+1
+2
+last
+```
 ### for
+`for` 文の基本構文は以下の様になります。
+```bash
+vi for.js
+```
+```javascript
+for (let i = 0; i < 3; i++) {
+	console.log(i)
+}
+```
+```bash
+node for.js
+0
+1
+2
+```
 ### for...in
+`for...in` 文は、オブジェクトから取り出したプロパティに対して
+順番不定で、繰り返し処理を実行します。
+```javascript
+for (変数 in オブジェクト) {
+	// 繰り返し処理をします
+}
+```
+for...in 文 利用例
+```bash
+vi forIn.js
+```
+```javascript
+const user = {
+	name: 'akira',
+	age: 45,
+	gender: 'man',
+}
+for (let key in user) {
+	console.log(key) // user プロパティ名
+	console.log(user[key]) // user プロパティ値
+}
+```
+```bash
+node forIn.js
+name
+akira
+age
+45
+gender
+man
+```
 ### for...of
+`for...of` 文は、反復可能オブジェクト(配列) に値して、定義した順番で値を反復処理します。
+```javascript
+for (変数 of オブジェクト) {
+	// 繰り返し処理をします
+}
+```
+for...of 文 利用例
+```bash
+vi forOf.js
+```
+```javascript
+const colors = ['Blue', 'Black', 'Red']
+for (let color of colors) {
+	console.log(color) // colors の値を表示
+}
+```
+```bash
+node forOf.js 
+Blue
+Black
+Red
+```
+
 ### while
+`while` 文は、条件式が true の間、繰り返す処理を実行します。
+条件式の条件が変化しない場合いつまでも 処理を実行して、無限ループになりますので利用する際は注意が必要です。
+
+最初の条件が `false` の場合は、処理は1度も実行されません。
+```javascript
+while (条件式) {
+	// 条件式が true の間、繰り返し処理をします
+}
+```
+while 文 利用例
+```bash
+vi while.js
+```
+```javascript
+let num = 0
+
+while (num < 3) {
+	console.log(num)
+	num++
+}
+```
+```bash
+node while.js 
+0
+1
+2
+```
+
 ### do...while
+`do...while` 文は、条件式が true の間、繰り返す処理を実行します。
+条件式の条件が変化しない場合いつまでも 処理を実行して、無限ループになりますので利用する際は注意が必要です。
+
+最初の条件が `false` の場合でも、最低1回は処理を実行されます。
+```javascript
+do {
+	// 条件式が true の間、繰り返し処理をします
+} while (条件式)
+```
+do...while 文 利用例
+```bash
+vi doWhile.js
+```
+```javascript
+let num = 0
+
+do {
+	console.log(num)
+	num++
+} while (num < 3)
+```
+```bash
+node doWhile.js 
+0
+1
+2
+```
+### falsy について
+**条件式**には真偽値以外にも値を指定出来ます。
+
+`false` と判定される値の事を **falsy** (偽値) といい、7つあります。
+これら７つの値はif文などで判定すると`false`となり、
+
+これ以外はすべて`true`となります。
+
+| falsy | 説明 |
+|:--|:--|
+| -0 | 数値のマイナスゼロ |
+| 0 | 数値のゼロ |
+| 0n | BigInt で、論理値として使用された場合 |
+| undefined | 値が何も定義されていない |
+| null | 値が何も存在しない |
+| NaN | 数値ではない事を表す |
+| "" または '' | 空文字列の値 |
 
 ## 配列
 
