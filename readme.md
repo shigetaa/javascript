@@ -282,6 +282,51 @@ const User = ({name}) => {name} // props.name を分割代入して {name} と�
 ```
 
 ## 条件分岐とループ
+条件分岐は、特定の条件を満たしているかどうかを評価したうえで行う処理を分岐します。
+### if
+`if` 文は「条件式」で条件を評価し、その評価結果によって処理を分岐する為に使用されます。
+```javascript
+if (条件式) {
+	// 条件式が true の場合処理をする
+}
+
+if (条件式) {
+	// 条件式が true の場合処理をする
+}else{
+	// 条件式が false の場合処理をする
+}
+
+if (条件式1) {
+	// 条件式1が true の場合処理をする
+}else if (条件式2) {
+	// 条件式2が true の場合処理をする
+}else{
+	// 条件式1 and 条件式2が false の場合処理をする
+}
+```
+if 文 利用例
+```javascript
+const color = 'Red'
+
+if (color === 'Blue') {
+	console.log('Blue')
+}else if (color === 'Black') {
+	console.log('Black')
+}else{
+	console.log(color) // Red 表示
+}
+```
+### switch
+
+```javascript
+
+```
+
+### for
+### for...in
+### for...of
+### while
+### do...while
 
 ## 配列
 
