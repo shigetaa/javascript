@@ -668,7 +668,15 @@ const compareFunc = (a, b) => a - b
 console.log(numberArray.sort(compareFunc)) // [ 1, 30, 50, 200, 4000 ]
 ```
 #### Array.reverse()
+`Array.reverse()` は、配列の要素の並び順を反転させます。
+```javascript
+// 文字列の配列を宣言
+const aLine = ['あ', 'う', 'い', 'え', 'お']
 
+console.log(aLine.reverse()) // [ 'お', 'え', 'い', 'う', 'あ' ]
+// 元の配列要素の順番が変わっている
+console.log(aLine) // [ 'お', 'え', 'い', 'う', 'あ' ]
+```
 #### 元の配列を変更する事無く並べ替えするには
 `Array.sort()` `Array.reverse()` と、スプレッド構文[ES2015]を組み合わせて並べ替えを行うことで、元の配列要素の並び順に影響する事無く新しい配列を作成できます。
 ```javascript
