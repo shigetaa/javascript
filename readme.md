@@ -522,6 +522,179 @@ node doWhile.js
 | "" または '' | 空文字列の値 |
 
 ## 配列
+配列は値の集合を操作するためのオブジェクトで、`Array` オブジェクトといいます。
+配列に格納された個々の値を**要素**、要素の先頭から**0**から始まる連番を**index**といい、順番に 1,2,3,4...と続きます。
+### 配列の基本形
+配列を作成するには`[]`の中に要素を入れ`,`で区切ります。
+```javascript
+// 空の配列を宣言
+const emptyArray = [];
+// 文字列の配列を宣言
+const stringArray = ['値文字列1','値文字列2','値文字列3']
+// 数値の配列を宣言
+const numberArray = [1,2,3]
+// 2次元配列
+const matrixArray = [
+	['A','B','C'],['X','Y','Z']
+]
+```
+### 配列の要素にアクセスする
+配列要素へのアクセスするには、アクセスしたい要素の`index`を利用します。
+配列要素の位置を`index`といい`Array[index]`と言う形でアクセス出来ます。
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue','Black','Red']
+
+console.log(colors[0]) // Blue  表示
+console.log(colors[1]) // Black 表示
+console.log(colors[2]) // Red   表示
+
+// 存在しない要素へアクセスすると undefined を返す
+console.log(colors[3]) // undefined
+```
+### 配列であるか判定する 
+`Array.isArray(obj)` を利用すると、指定した`obj`が配列であるかを真偽値で返します。
+```javascript
+// 空の配列を宣言
+const emptyArray = []
+// 空のオブジェクトを宣言
+const emptyObject = {}
+
+console.log(Array.isArray(emptyArray)) // true
+console.log(Array.isArray(emptyObject)) // false
+```
+### 配列から要素を検索する
+- `Array.indexOf()` を利用すると、配列から指定した要素がどの位置にあるか取得できます。
+- `Array.includes()` を利用すると、配列に指定した要素が含まれているかを真偽値で返します。
+#### Array.indexOf()
+`Array.indexOf(arg)` を利用すると、配列で指定した要素の位置 `index` を検索出来ます。
+`arg` と最初にマッチした要素の `index` を返し、マッチした要素が見つからない場合は `-1` を返します。
+
+つまり、検索したい要素が見つからない場合は `-1` を返し
+見つかった場合は `index` を返します。
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue','Black','Red']
+
+console.log(colors.indexOf('Red')) // 2 表示
+console.log(colors.indexOf('Green')) // -1 表示
+```
+#### Array.includes()
+`Array.includes(arg)` を利用すると、配列に `arg` で指定した要素が含まれているかを真偽値を返します。
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue','Black','Red']
+
+console.log(colors.includes('Red')) // true
+console.log(colors.includes('Green')) // false
+```
+### 配列要素の個数を取得する
+配列が持つ個数を取得するには、配列の数を返してくれる `length` プロパティを利用します。
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue','Black','Red']
+
+console.log(colors.length) // 3
+console.log(colors[colors.length -1]) // Red 表示
+```
+### 配列から文字列へ変換する
+`Array.toString()` を利用すると、配列から文字列へ変換できます。
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue','Black','Red']
+
+console.log(colors.toString()) // Blue,Black,Red 表示
+```
+### 配列の連結
+- `Array.concat(Array,...)` を利用すると、配列と別の配列と連結して新しい配列を返します。
+新しい配列が作成されるため、連結前の物と配列に変更はありません。
+- `[...Array, ...Array,...Array]` を利用すると元の配列要素を展開して新しい配列を作成します。
+新しい配列が作成されるため、連結前の物と配列に変更はありません。
+- `Array.join(separator)` を利用すると、配列の各要素を指定した `separator` (`/`,`-`など)で連結した文字列を返します。
+#### Array.concat(Array,...)
+```javascript
+// 文字列の配列を宣言
+const colors1 = ['Blue','Black','Red']
+const colors2 = ['Navy','Gray','Orange']
+const colors3 = ['SkyBlue','Silver','Pink']
+
+console.log(colors1.concat(colors2,colors3)) // ['Blue','Black','Red','Navy','Gray','Orange','SkyBlue','Silver','Pink']
+console.log(colors1.concat(colors2).concat(colors3)) // ['Blue','Black','Red','Navy','Gray','Orange','SkyBlue','Silver','Pink']
+```
+#### [...Array, ...Array,...Array]
+配列と別の配列に、スプレット構文[ES2015] `...Array` を利用する方法です。
+```javascript
+// 文字列の配列を宣言
+const colors1 = ['Blue','Black','Red']
+const colors2 = ['Navy','Gray','Orange']
+const colors3 = ['SkyBlue','Silver','Pink']
+
+console.log([...colors1,...colors2,...colors3]) // ['Blue','Black','Red','Navy','Gray','Orange','SkyBlue','Silver','Pink']
+```
+#### Array.join(separator)
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue','Black','Red']
+
+console.log(colors.join(' / ')) // Blue / Black / Red 表示
+console.log(colors.join('-')) // Blue-Black-Red 表示
+```
+### 配列のソート
+配列要素の並び替えは、元の配列そのものに変更を加えるメソッドになります。
+一般的に、**破壊的メソッド** と言います。
+並び替えを行う際は、元の配列への影響の有無を配慮する必要があります。
+- `Array.sort()` は、配列要素を文字列に変換してから昇順に並び替えを行います。
+- `Array.reverse(arr)` は、配列要素の並び順を反転させます。
+#### Array.sort()
+```javascript
+// 文字列の配列を宣言
+const aLine = ['あ','う','い','え','お']
+
+console.log(aLine.sort()) // ['あ','い','う','え','お']
+// 元の配列要素の順番が変わっている
+console.log(aLine) // ['あ','い','う','え','お']
+```
+数値の並べ替えは、比較関数を利用します。
+比較関数を利用しない場合は文字列として並び変えられます。
+```javascript
+// 数値の配列を宣言
+const numberArray = [1, 4000, 30, 50, 200]
+// 文字列として並び替え
+console.log(numberArray.sort()) // [ 1, 200, 30, 4000, 50 ]
+
+// 比較関数を定義
+const compareFunc = (a, b) => a - b
+// 数値として並び替え
+console.log(numberArray.sort(compareFunc)) // [ 1, 30, 50, 200, 4000 ]
+```
+#### Array.reverse()
+
+#### 元の配列を変更する事無く並べ替えするには
+`Array.sort()` `Array.reverse()` と、スプレッド構文[ES2015]を組み合わせて並べ替えを行うことで、元の配列要素の並び順に影響する事無く新しい配列を作成できます。
+```javascript
+// 文字列の配列を宣言
+const aLine = ['あ','う','い','え','お']
+
+console.log([...aLine].sort()) // ['あ','い','う','え','お']
+// 元の配列要素の順番に影響してない。
+console.log(aLine) // ['あ','う','い','え','お']
+```
+`concat()` を利用して `Array.concat().sort()` として並び替えを行った場合も、元の配列要素の並び替え順に影響することなく新しい配列を作成出来ます。
+```javascript
+// 文字列の配列を宣言
+const aLine = ['あ','う','い','え','お']
+
+console.log(aLine.concat().sort()) // ['あ','い','う','え','お']
+// 元の配列要素の順番に影響してない。
+console.log(aLine) // ['あ','う','い','え','お']
+```
+
+### 配列要素の削除
+### 配列要素の追加
+### 配列のフラット化
+### 分割代入
+### 配列の高階関数
+
 
 ## オブジェクト
 
