@@ -663,9 +663,11 @@ const numberArray = [1, 4000, 30, 50, 200]
 console.log(numberArray.sort()) // [ 1, 200, 30, 4000, 50 ]
 
 // 比較関数を定義
-const compareFunc = (a, b) => a - b
+const ascFunc = (a, b) => a - b
+const descFunc = (a, b) => b - a
 // 数値として並び替え
-console.log(numberArray.sort(compareFunc)) // [ 1, 30, 50, 200, 4000 ]
+console.log(numberArray.sort(ascFunc)) // [ 1, 30, 50, 200, 4000 ]
+console.log(numberArray.sort(descFunc)) // [ 4000, 200, 50, 30, 1 ]
 ```
 #### Array.reverse()
 `Array.reverse()` は、配列の要素の並び順を反転させます。
@@ -696,11 +698,82 @@ console.log(aLine.concat().sort()) // ['あ','い','う','え','お']
 // 元の配列要素の順番に影響してない。
 console.log(aLine) // ['あ','う','い','え','お']
 ```
-
 ### 配列要素の削除
+- `Array.pop()` は、配列の最後の要素を削除します。
+- `Array.shift()` は、配列の最初の要素を削除します。
+- `Array.splice()` は、任意の `index` の要素を削除します。
+#### Array.pop()
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue', 'Black', 'Red']
+
+// 配列の最後の要素を削除します。
+colors.pop()
+console.log(colors) // [ 'Blue', 'Black' ]
+```
+#### Array.shift()
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue', 'Black', 'Red']
+
+// 配列の最初の要素を削除します。
+colors.shift()
+console.log(colors) // [ 'Black', 'Red' ]
+```
+#### Array.splice()
+任意の位置の要素を削除します。
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue', 'Black', 'Red']
+
+// 配列のindex 1の要素を削除します。
+colors.splice(1)
+console.log(colors) // ['Blue', 'Red']
+```
+任意の位置の要素から、指定した要素数を削除します。
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue', 'Black', 'Red']
+
+// 配列のindex 1の要素から 2の要素を削除します。
+colors.splice(1, 2)
+console.log(colors) // ['Blue']
+```
+任意の位置の要素から、指定した要素数を削除してから、要素を追加します。
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue', 'Black', 'Red']
+
+// 配列のindex 1の要素から 2の要素を削除して、要素を追加します。
+colors.splice(1, 2, 'Pink')
+console.log(colors) // ['Blue', 'Pink']
+```
 ### 配列要素の追加
+- `Array.push(arg)` は、配列の最後に `arg` で指定した要素を追加します。
+- `Array.unshift(arg)` は、配列の最初に `arg` で指定した要素を追加します。
+#### Array.push()
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue', 'Black', 'Red']
+
+// 配列の最後に要素を追加します。
+colors.push('Pink')
+console.log(colors) // ['Blue', 'Black', 'Red', 'Pink']
+```
+#### Array.unshift()
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue', 'Black', 'Red']
+
+// 配列の最初に要素を追加します。
+colors.unshift('Pink')
+console.log(colors) // ['Pink', 'Blue', 'Black', 'Red']
+```
+
 ### 配列のフラット化
+
 ### 分割代入
+
 ### 配列の高階関数
 
 
