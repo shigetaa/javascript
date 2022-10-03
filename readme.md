@@ -805,10 +805,10 @@ console.log(Etc) // ['Red', 'Pink']
 ### 配列の高階関数
 高階関数とは、引数として渡され関数の事で、別名、コールバック関数とも言います。
 #### Array.forEach()
-`Array.forEach(collback)` は、配列における反復処理の為のメソッドです。
+`Array.forEach(callback)` は、配列における反復処理の為のメソッドです。
 取り出された配列要素に対して、引数に渡されたコールバック関数で順番に処理していきます。
 
-`Array.forEach(collback)` の `collback` コールバック関数が受け取る引数は次の通りです。
+`Array.forEach(callback)` の `callback` コールバック関数が受け取る引数は次の通りです。
 1. 第一引数の `value` へ配列要素が渡される
 2. 第二引数の `index` へ0から始まるindex番号が渡される
 3. 第三引数の `array` へ元の配列が渡される
@@ -827,11 +827,11 @@ colors.forEach((value, index, array) => {
 })
 ```
 #### Array.map()
-`Array.map(collback)` は、配列における反復処理の為のメソッドです。
+`Array.map(callback)` は、配列における反復処理の為のメソッドです。
 取り出された配列に対して、引数に渡されたコールバック関数で順番に処理し、
 その戻り値から新たな配列を宣言する、非破壊的メソッドです。
 
-`Array.map(collback)` の `collback` コールバック関数が受け取る引数は次の通りです。
+`Array.map(callback)` の `callback` コールバック関数が受け取る引数は次の通りです。
 1. 第一引数の `value` へ配列要素が渡される
 2. 第二引数の `index` へ0から始まるindex番号が渡される
 3. 第三引数の `array` へ元の配列が渡される
@@ -854,10 +854,10 @@ console.log(numberArray)    // [ 1, 4000, 30, 50, 200 ]
 console.log(arrayMapResult) // [ 0, 4000, 60, 150, 800 ]
 ```
 #### Array.filter()
-`Array.filter(collback)` は、配列における反復処理の為のメソッドです。
+`Array.filter(callback)` は、配列における反復処理の為のメソッドです。
 取り出された配列要素に対し、引数に渡されたコールバック関数で順番に処理して条件に一致するかを真偽値で返し、戻り値から新たな配列を宣言します。
 
-`Array.filter(collback)` の `collback` コールバック関数が受け取る引数は次の通りです。
+`Array.filter(callback)` の `callback` コールバック関数が受け取る引数は次の通りです。
 1. 第一引数の `value` へ配列要素が渡される
 2. 第二引数の `index` へ0から始まるindex番号が渡される
 3. 第三引数の `array` へ元の配列が渡される
@@ -882,11 +882,11 @@ console.log(numberArray)    // [ 1, 4000, 30, 50, 200 ]
 console.log(arrayFilterResult) // [ 30 ]
 ```
 #### Array.find()
-`Array.find(collback)` は、配列における反復処理の為のメソッドです。
+`Array.find(callback)` は、配列における反復処理の為のメソッドです。
 取り出された配列要素に対し、引数に渡されたコールバック関数の戻り値が、最初に `true` になった要素の値を返し、要素を見つけた時点で処理は停止します。
 条件に一致する要素が見つからない場合は、`undefined` を返します。
 
-`Array.find(collback)` の `collback` コールバック関数が受け取る引数は次の通りです。
+`Array.find(callback)` の `callback` コールバック関数が受け取る引数は次の通りです。
 1. 第一引数の `value` へ配列要素が渡される
 2. 第二引数の `index` へ0から始まるindex番号が渡される
 3. 第三引数の `array` へ元の配列が渡される
@@ -908,11 +908,11 @@ console.log(numberArray)    // [ 1, 15, 30, 50, 200 ]
 console.log(arrayFindResult) // [ 15 ]
 ```
 #### Array.findIndex()
-`Array.findIndex(collback)` は、配列における反復処理の為のメソッドです。
+`Array.findIndex(callback)` は、配列における反復処理の為のメソッドです。
 `Array.find()` と似ていますが、`Array.findIndex()` では、取り出された配列要素に対し、引数で渡されたコールバック関数の戻り値が、最初に `true` になった要素の値の  `index` を返し、要素を見つけた時点で処理を停止します。
 条件に一致する要素が見つからない場合は、`-1` を返します。
 
-`Array.findIndex(collback)` の `collback` コールバック関数が受け取る引数は次の通りです。
+`Array.findIndex(callback)` の `callback` コールバック関数が受け取る引数は次の通りです。
 1. 第一引数の `value` へ配列要素が渡される
 2. 第二引数の `index` へ0から始まるindex番号が渡される
 3. 第三引数の `array` へ元の配列が渡される
@@ -934,10 +934,10 @@ console.log(numberArray)    // [ 1, 15, 30, 50, 200 ]
 console.log(arrayFindIndexResult) // 1
 ```
 #### Array.every()
-`Array.every(collback)` は、配列における反復処理の為のメソッドです。
+`Array.every(callback)` は、配列における反復処理の為のメソッドです。
 取り出された配列要素に対し、引数に渡されたコールバック関数で順番に処理された要素のすべてが条件に一致する場合のみ `true` を返し、1つでも一致しなかった場合は `false` を返します。
 
-`Array.every(collback)` の `collback` コールバック関数が受け取る引数は次の通りです。
+`Array.every(callback)` の `callback` コールバック関数が受け取る引数は次の通りです。
 1. 第一引数の `value` へ配列要素が渡される
 2. 第二引数の `index` へ0から始まるindex番号が渡される
 3. 第三引数の `array` へ元の配列が渡される
@@ -961,10 +961,10 @@ console.log(numberArray)    // [ 3, 6, 9, 12, 15 ]
 console.log(arrayEveryResult) // true
 ```
 #### Array.some()
-`Array.some(collback)` は、配列における反復処理の為のメソッドです。
+`Array.some(callback)` は、配列における反復処理の為のメソッドです。
 取り出された配列要素に対し、引数に渡されたコールバック関数で順番に処理された要素のうち一つでも条件に一致すれば `true` を返します。
 
-`Array.some(collback)` の `collback` コールバック関数が受け取る引数は次の通りです。
+`Array.some(callback)` の `callback` コールバック関数が受け取る引数は次の通りです。
 1. 第一引数の `value` へ配列要素が渡される
 2. 第二引数の `index` へ0から始まるindex番号が渡される
 3. 第三引数の `array` へ元の配列が渡される
@@ -985,7 +985,44 @@ console.log(numberArray)    // [ 1, 6, 9, 12, 15 ]
 console.log(arraySomeResult) // true
 ```
 #### Array.reduce()
+`Array.reduce(callback, initialValue)` は、配列における反復処理の為のメソッドです。
 
+`Array.reduce(callback, initialValue)` の `callback` コールバック関数が受け取る引数は次の通りです。
+1. 第一引数の `accumulator` へ前回の値が渡される
+2. 第二引数の `currentValue` へ現在の値が渡される
+3. 第三引数の `currentIndex` へ現在の `currentValue` として処理されている要素の `index` が渡される
+4. 第四引数の `array` へ元の配列が渡される
+
+`initialValue` には、初期値が入ります。
+
+配列要素を渡していく第一引数と第二引数は必須ですが、第三引数と第四引数は省略可能です。
+```javascript
+Array.reduce((accumulator, currentValue, currentIndex, array)=>{
+  return accumulator
+}, initialValue)
+```
+最初にコールバック関数が呼ばれた時に `accumulator` には `initialValue` が渡された状態で反復処理が開始されます。
+最終的な戻り値は、コールバック関数が最後に `return` した `accumulator` の値になります。
+```javascript
+// 数値の配列を宣言
+const numberArray = [1, 6, 9, 12, 15]
+// 初期値を代入
+const initialValue = 0
+
+const arrayReduceResult = numberArray.reduce((accumulator, currentValue) => {
+	console.log(`accumulator: ${accumulator}, currentValue: ${currentValue}`)
+	// accumulator: 0,  currentValue: 1
+	// accumulator: 1,  currentValue: 6
+	// accumulator: 7,  currentValue: 9
+	// accumulator: 16, currentValue: 12
+	// accumulator: 28, currentValue: 15
+	// 前回の値と現在の値を足していく
+	return accumulator + currentValue
+}, initialValue)
+
+console.log(numberArray) // [ 1, 6, 9, 12, 15 ]
+console.log(arrayReduceResult) // 43
+```
 ## オブジェクト
 
 ## モジュール
