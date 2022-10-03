@@ -1161,7 +1161,7 @@ console.log(sampleObj3) // { a: 10, b: 20, c: 30, d: 40 }
 // sampleObj3 オブジェクトを宣言
 const sampleObj3 = { a: 10, b: 20, c: 30, d: 40 }
 
-// 分割代入
+// 分割代入とレスト構文
 const {a, b, ...rest} = sampleObj3
 console.log(a) // 10
 console.log(b) // 20
@@ -1169,6 +1169,34 @@ console.log(b) // 20
 console.log(rest) // { c:30, d:40 }
 ```
 ### key や value プロパティの取り出し
+`key` や `value` プロパティの取り出し、配列にして返す方法を確認します。
+#### Object.keys(obj)
+`Object.keys(obj)` メソッドを利用すると、オブジェクトの`key`を取り出し、配列に返します。
+```javascript
+// sampleObj3 オブジェクトを宣言
+const sampleObj3 = { a: 10, b: 20, c: 30, d: 40 }
+
+const keys = Object.keys(sampleObj3)
+console.log(keys) // [ 'a', 'b', 'c', 'd' ]
+```
+#### Object.values(obj)
+`Object.values(obj)` メソッドを利用すると、オブジェクトの`value`を取り出し、配列に返します。
+```javascript
+// sampleObj3 オブジェクトを宣言
+const sampleObj3 = { a: 10, b: 20, c: 30, d: 40 }
+
+const values = Object.values(sampleObj3)
+console.log(values) // [ 10, 20, 30, 40 ]
+```
+#### Object.entries(obj)
+`Object.entries(obj)` メソッドを利用すると、オブジェクトの`[key,value]`を要素に持つ配列を返します。
+```javascript
+// sampleObj3 オブジェクトを宣言
+const sampleObj3 = { a: 10, b: 20, c: 30, d: 40 }
+
+const entries = Object.entries(sampleObj3)
+console.log(entries) // [['a', 10], ['b', 20], ['c', 30], ['d', 40]]
+```
 ### オブジェクトを要素に持つ配列
 
 
