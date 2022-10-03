@@ -988,20 +988,20 @@ console.log(arraySomeResult) // true
 `Array.reduce(callback, initialValue)` は、配列における反復処理の為のメソッドです。
 
 `Array.reduce(callback, initialValue)` の `callback` コールバック関数が受け取る引数は次の通りです。
-1. 第一引数の `accumulator` へ前回の値が渡される
+1. 第一引数の `previousValue` へ前回の値が渡される
 2. 第二引数の `currentValue` へ現在の値が渡される
-3. 第三引数の `currentIndex` へ現在の `currentValue` として処理されている要素の `index` が渡される
+3. 第三引数の `index` へ現在の `currentValue` として処理されている要素の `index` が渡される
 4. 第四引数の `array` へ元の配列が渡される
 
 `initialValue` には、初期値が入ります。
 
 配列要素を渡していく第一引数と第二引数は必須ですが、第三引数と第四引数は省略可能です。
 ```javascript
-Array.reduce((accumulator, currentValue, currentIndex, array)=>{
+Array.reduce((previousValue, currentValue, index, array)=>{
   return accumulator
 }, initialValue)
 ```
-最初にコールバック関数が呼ばれた時に `accumulator` には `initialValue` が渡された状態で反復処理が開始されます。
+最初にコールバック関数が呼ばれた時に `previousValue` には `initialValue` が渡された状態で反復処理が開始されます。
 最終的な戻り値は、コールバック関数が最後に `return` した `accumulator` の値になります。
 ```javascript
 // 数値の配列を宣言
@@ -1009,15 +1009,15 @@ const numberArray = [1, 6, 9, 12, 15]
 // 初期値を代入
 const initialValue = 0
 
-const arrayReduceResult = numberArray.reduce((accumulator, currentValue) => {
-	console.log(`accumulator: ${accumulator}, currentValue: ${currentValue}`)
-	// accumulator: 0,  currentValue: 1
-	// accumulator: 1,  currentValue: 6
-	// accumulator: 7,  currentValue: 9
-	// accumulator: 16, currentValue: 12
-	// accumulator: 28, currentValue: 15
+const arrayReduceResult = numberArray.reduce((previousValue, currentValue) => {
+	console.log(`previousValue: ${previousValue}, currentValue: ${currentValue}`)
+	// previousValue: 0,  currentValue: 1
+	// previousValue: 1,  currentValue: 6
+	// previousValue: 7,  currentValue: 9
+	// previousValue: 16, currentValue: 12
+	// previousValue: 28, currentValue: 15
 	// 前回の値と現在の値を足していく
-	return accumulator + currentValue
+	return previousValue + currentValue
 }, initialValue)
 
 console.log(numberArray) // [ 1, 6, 9, 12, 15 ]
