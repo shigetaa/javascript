@@ -1144,6 +1144,30 @@ delete person3.key
 console.log(person3) // { name: 'akira', age: 44, langage: 'Japan' }
 ```
 ### スプレッド構文とレスト構文
+スプレッド構文でオブジェクトをマージ出来ます。
+```javascript
+// sampleObj1 オブジェクトを宣言
+const sampleObj1 = { a:10, b:20 }
+// sampleObj2 オブジェクトを宣言
+const sampleObj2 = { c:30, d:40 }
+// sampleObj3 オブジェクトを宣言
+// スプレット構文で オブジェクトを展開してマージ
+const sampleObj3 = { ...sampleObj1, ...sampleObj2 }
+console.log(sampleObj3) // { a: 10, b: 20, c: 30, d: 40 }
+```
+オブジェクトの `key` と同じ定数名を使うと、その `key` の値が代入されます。
+残りのプロパティはオブジェクトのまま取り出すことができます。
+```javascript
+// sampleObj3 オブジェクトを宣言
+const sampleObj3 = { a: 10, b: 20, c: 30, d: 40 }
+
+// 分割代入
+const {a, b, ...rest} = sampleObj3
+console.log(a) // 10
+console.log(b) // 20
+// 残りのプロパティはオブジェクトのまま取り出す事が出来ます。(レスト構文)
+console.log(rest) // { c:30, d:40 }
+```
 ### key や value プロパティの取り出し
 ### オブジェクトを要素に持つ配列
 
