@@ -788,11 +788,52 @@ console.log(multiArray.flat(2)) // [ 1, 2, 3, [ 4 ], 5, 6, 7 ]
 // 引数に、Infinity を指定して、すべての配列をフラット化
 console.log(multiArray.flat(Infinity)) // [ 1, 2, 3, 4, 5, 6, 7 ]
 ```
-
 ### 分割代入
+配列における分割代入では、右辺に対する `index` の配列要素が左辺で定義した変数に代入されます。
+指定した配列の `index` の値を変数として定義しなおすことができます。
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue', 'Black', 'Red', 'Pink']
 
+// 分割代入
+const [Blue, Black, ...Etc] = colors
+
+console.log(Blue) // Blue
+console.log(Black) // Black
+console.log(Etc) // ['Red', 'Pink']
+```
 ### 配列の高階関数
+高階関数とは、引数として渡され関数の事で、別名、コールバック関数とも言います。
+#### Array.forEach()
+`Array.forEach(collback)` は、配列における反復処理の為のメソッドです。
+取り出された配列要素に対して、引数に渡されたコールバック関数で順番に処理していきます。
 
+`Array.forEach(collback)` の `collback` コールバック関数が受け取る引数は次の通りです。
+1. 第一引数の `value` へ配列要素が渡される
+2. 第二引数の `index` へ0から始まるindex番号が渡される
+3. 第三引数の `array` へ元の配列が渡される
+
+配列要素を渡していく第一引数は必須ですが、第二引数と第三引数は省略可能です。
+```javascript
+// 文字列の配列を宣言
+const colors = ['Blue', 'Black', 'Red', 'Pink']
+
+colors.forEach((value, index, array) => {
+	console.log(`value: ${value}, index: ${index}, array: ${array}`)
+	// value: Blue,  index: 0, array: Blue,Black,Red,Pink
+	// value: Black, index: 1, array: Blue, Black, Red, Pink
+	// value: Red,   index: 2, array: Blue, Black, Red, Pink
+	// value: Pink,  index: 3, array: Blue, Black, Red, Pink
+})
+```
+#### Array.map()
+
+#### Array.filter()
+#### Array.find()
+#### Array.findIndex()
+#### Array.every()
+#### Array.some()
+#### Array.reduce()
 
 ## オブジェクト
 
