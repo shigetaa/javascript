@@ -1198,8 +1198,49 @@ const entries = Object.entries(sampleObj3)
 console.log(entries) // [['a', 10], ['b', 20], ['c', 30], ['d', 40]]
 ```
 ### オブジェクトを要素に持つ配列
-
-
+```javascript
+// 複数のオブジェクトを持つ 配列を宣言
+const persons = [
+	{
+		name: 'tanaka',
+		age: 18
+	},
+	{
+		name: 'suzuki',
+		age: 45
+	},
+	{
+		name: 'yamada',
+		age: 51
+	}
+]
+```
+`for` メソッドを利用して、配列要素を1つ1つ取り出して返します。
+```javascript
+for (let i = 0; i < persons.length; i++) {
+	const { name, age } = persons[i]
+	console.log(`name: ${name}, age: ${age}`)
+	// name: tanaka, age: 18
+	// name: suzuki, age: 45
+	// name: yamada, age: 51
+}
+```
+`forEach` メソッドを利用して、配列要素を1つ1つ取り出して返します。
+```javascript
+persons.forEach((person) => {
+	console.log(`name: ${person.name}, age: ${person.age}`)
+	// name: tanaka, age: 18
+	// name: suzuki, age: 45
+	// name: yamada, age: 51
+})
+```
+`map` メソッドを利用して、配列要素を1つ1つ取り出して返します。
+```javascript
+const personsMap = persons.map((person) => {
+	return `name: ${person.name}, age: ${person.age}`
+})
+console.log(personsMap) // [ 'name: tanaka, age: 18','name: suzuki, age: 45','name: yamada, age: 51']
+```
 ## モジュール
 
 ## 非同期処理
