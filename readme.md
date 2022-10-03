@@ -853,10 +853,63 @@ const arrayMapResult = numberArray.map((value, index) => {
 console.log(numberArray)    // [ 1, 4000, 30, 50, 200 ]
 console.log(arrayMapResult) // [ 0, 4000, 60, 150, 800 ]
 ```
-
 #### Array.filter()
+`Array.filter(collback)` は、配列における反復処理の為のメソッドです。
+取り出された配列要素に対し、引数に渡されたコールバック関数で順番に処理して条件に一致するかを真偽値で返し、戻り値から新たな配列を宣言します。
+
+`Array.filter(collback)` の `collback` コールバック関数が受け取る引数は次の通りです。
+1. 第一引数の `value` へ配列要素が渡される
+2. 第二引数の `index` へ0から始まるindex番号が渡される
+3. 第三引数の `array` へ元の配列が渡される
+
+配列要素を渡していく第一引数は必須ですが、第二引数と第三引数は省略可能です。
+```javascript
+// 数値の配列を宣言
+const numberArray = [1, 4000, 30, 50, 200]
+
+const arrayFilterResult = numberArray.filter((value, index) => {
+	console.log(`value: ${value}, index: ${index}`)
+	// value: 1,    index: 0
+	// value: 4000, index: 1
+	// value: 30,   index: 2
+	// value: 50,   index: 3
+	// value: 200,  index: 4
+
+	// 3で割れる要素を見つけて、新しい配列を作成する。
+	return value % 3 === 0
+})
+console.log(numberArray)    // [ 1, 4000, 30, 50, 200 ]
+console.log(arrayFilterResult) // [ 30 ]
+```
 #### Array.find()
+`Array.find(collback)` は、配列における反復処理の為のメソッドです。
+取り出された配列要素に対し、引数に渡されたコールバック関数の戻り値が、最初に `true` になった要素の値を返し、要素を見つけた時点で処理は停止します。
+条件に一致する要素が見つからない場合は、`undefined` を返します。
+
+`Array.find(collback)` の `collback` コールバック関数が受け取る引数は次の通りです。
+1. 第一引数の `value` へ配列要素が渡される
+2. 第二引数の `index` へ0から始まるindex番号が渡される
+3. 第三引数の `array` へ元の配列が渡される
+
+配列要素を渡していく第一引数は必須ですが、第二引数と第三引数は省略可能です。
+```javascript
+// 数値の配列を宣言
+const numberArray = [1, 15, 30, 50, 200]
+
+const arrayFindResult = numberArray.find((value, index) => {
+	console.log(`value: ${value}, index: ${index}`)
+	// value: 1,    index: 0
+	// value: 15,   index: 1
+
+	// 3で割れる要素を見つけて、新しい配列を作成する。
+	return value % 3 === 0
+})
+console.log(numberArray)    // [ 1, 15, 30, 50, 200 ]
+console.log(arrayFindResult) // [ 15 ]
+```
 #### Array.findIndex()
+
+
 #### Array.every()
 #### Array.some()
 #### Array.reduce()
