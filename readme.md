@@ -1121,6 +1121,28 @@ console.log(person3[propatyName]) // 45
 console.log(person3.propatyName) // undefined
 ```
 ### プロパティの変更、追加、削除
+プロパティの変更、追加、削除を行ってみます。
+```javascript
+// プロパティを複数持つオブジェクトを宣言
+// , カンマで区切る事で複数プロパティを指定出来る
+const person3 = {
+	key: 'value',
+	name: 'akira',
+	age: 45,
+}
+console.log(person3) // { key: 'value', name: 'akira', age: 45 }
+
+// age プロパティの値の変更
+// const で オブジェクト person3 を宣言していても、プロパティの値の変更出来ます。
+person3.age = 44
+console.log(person3) // { key: 'value', name: 'akira', age: 44 }
+// langage プロパティの追加
+person3.langage = 'Japan'
+console.log(person3) // { key: 'value', name: 'akira', age: 44, langage: 'Japan' }
+// key プロパティの削除
+delete person3.key
+console.log(person3) // { name: 'akira', age: 44, langage: 'Japan' }
+```
 ### スプレッド構文とレスト構文
 ### key や value プロパティの取り出し
 ### オブジェクトを要素に持つ配列
