@@ -1234,7 +1234,7 @@ persons.forEach((person) => {
 	// name: yamada, age: 51
 })
 ```
-`map` メソッドを利用して、配列要素を1つ1つ取り出して返します。
+`map` メソッドを利用して、配列要素を1つ1つ取り出して、新しい配列を返します。
 ```javascript
 const personsMap = persons.map((person) => {
 	return `name: ${person.name}, age: ${person.age}`
