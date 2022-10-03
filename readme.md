@@ -1062,6 +1062,64 @@ const sampleObj = {color}
 console.log(sampleObj) // { color: 'Red }
 ```
 ### プロパティへのアクセス
+プロパティへのアクセス方法は `.` (ドット)記法によるアクセスと `[]` (ブラケット)記法によるアクセスの2通りあります。
+一般的に利用されやすいのはドット記法です。
+どちらの記法でも、プロパティ名(`key`)を指定することで、値(`value`)を参照出来ます。
+```javascript
+// プロパティを複数持つオブジェクトを宣言
+// , カンマで区切る事で複数プロパティを指定出来る
+const person3 = {
+	key: 'value',
+	name: 'akira',
+	age: 45,
+}
+// ドット記法で参照
+console.log(person3.key) // value
+console.log(person3.name) // akira
+console.log(person3.age) // 45
+// ブランケット記法で参照
+console.log(person3['key']) // value
+console.log(person3['name']) // akira
+console.log(person3['age']) // 45
+```
+ただし、オブジェクトのプロパティ名は、文字列またはシンボルしか扱う事が出来ません。
+したがって次のような場合は、ドット記法は使用できないことから、ブランケット記法でアクセスする必要があります。
+- プロパティ名が数字で始まる
+- プロパティ名にハイフンが含まれている
+- プロパティ名がJavaScriptの予約語である
+
+プロパティ名はシンボルの場合を除き、暗黙的に文字列に変換されます。
+```javascript
+// ブランケット記法でしか参照出来ないオブジェクトを宣言
+const sampleObj = {
+	// プロパティ名が数字
+	10: 1234,
+	// プロパティ名にハイフンが含まれる
+	'my-name': 'akira',
+	// プロパティ名が予約語
+	case: false,
+}
+// ブランケット記法で参照
+console.log(sampleObj['10']) // 1234
+console.log(sampleObj['my-name']) // akira
+console.log(sampleObj['case']) // false
+```
+プロパティ名に変数を利用したい場合も、ブランケット記法で参照します。
+```javascript
+// プロパティを複数持つオブジェクトを宣言
+// , カンマで区切る事で複数プロパティを指定出来る
+const person3 = {
+	key: 'value',
+	name: 'akira',
+	age: 45,
+}
+// プロパテ名の値を代入した変数を宣言
+const propatyName = 'age'
+// ブランケット記法で参照
+console.log(person3[propatyName]) // 45
+// ドット記法で参照
+console.log(person3.propatyName) // undefined
+```
 ### プロパティの変更、追加、削除
 ### スプレッド構文とレスト構文
 ### key や value プロパティの取り出し
