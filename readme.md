@@ -827,6 +827,32 @@ colors.forEach((value, index, array) => {
 })
 ```
 #### Array.map()
+`Array.map(collback)` は、配列における反復処理の為のメソッドです。
+取り出された配列に対して、引数に渡されたコールバック関数で順番に処理し、
+その戻り値から新たな配列を宣言する、非破壊的メソッドです。
+
+`Array.map(collback)` の `collback` コールバック関数が受け取る引数は次の通りです。
+1. 第一引数の `value` へ配列要素が渡される
+2. 第二引数の `index` へ0から始まるindex番号が渡される
+3. 第三引数の `array` へ元の配列が渡される
+
+配列要素を渡していく第一引数は必須ですが、第二引数と第三引数は省略可能です。
+```javascript
+// 数値の配列を宣言
+const numberArray = [1, 4000, 30, 50, 200]
+
+const arrayMapResult = numberArray.map((value, index) => {
+	console.log(`value: ${value}, index: ${index}`)
+	// value: 1,    index: 0
+	// value: 4000, index: 1
+	// value: 30,   index: 2
+	// value: 50,   index: 3
+	// value: 200,  index: 4
+	return value * index
+})
+console.log(numberArray)    // [ 1, 4000, 30, 50, 200 ]
+console.log(arrayMapResult) // [ 0, 4000, 60, 150, 800 ]
+```
 
 #### Array.filter()
 #### Array.find()
