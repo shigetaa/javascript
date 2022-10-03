@@ -961,6 +961,29 @@ console.log(numberArray)    // [ 3, 6, 9, 12, 15 ]
 console.log(arrayEveryResult) // true
 ```
 #### Array.some()
+`Array.some(collback)` は、配列における反復処理の為のメソッドです。
+取り出された配列要素に対し、引数に渡されたコールバック関数で順番に処理された要素のうち一つでも条件に一致すれば `true` を返します。
+
+`Array.some(collback)` の `collback` コールバック関数が受け取る引数は次の通りです。
+1. 第一引数の `value` へ配列要素が渡される
+2. 第二引数の `index` へ0から始まるindex番号が渡される
+3. 第三引数の `array` へ元の配列が渡される
+
+配列要素を渡していく第一引数は必須ですが、第二引数と第三引数は省略可能です。
+```javascript
+// 数値の配列を宣言
+const numberArray = [1, 6, 9, 12, 15]
+
+const arraySomeResult = numberArray.some((value, index) => {
+	console.log(`value: ${value}, index: ${index}`)
+	// value: 1,  index: 0
+	// value: 6,  index: 1
+	// 3で割れる要素を検証する
+	return value % 3 === 0
+})
+console.log(numberArray)    // [ 1, 6, 9, 12, 15 ]
+console.log(arraySomeResult) // true
+```
 #### Array.reduce()
 
 ## オブジェクト
