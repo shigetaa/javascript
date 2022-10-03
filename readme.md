@@ -771,6 +771,23 @@ console.log(colors) // ['Pink', 'Blue', 'Black', 'Red']
 ```
 
 ### 配列のフラット化
+`Array.flat(depth)` を利用すると、多次元配列の低次元配列にフラット化」した配列に変換出来ます。
+`Array.flat()` は元の配列に変更を加えない、非破壊メソッドです。
+#### Array.flat()
+`Array.flat(depth)` の引数 `depth` には、何次元までの配列をフラットにするかを数値で指定できます。
+引数を指定しない場合は1段階のみのフラット化を行います。
+すべての配列をフラット化した場合は、引数へ `Infinity` を渡します。
+```javascript
+// 多次元配列を宣言
+const multiArray = [1, [2, [3, [4]], 5], [6], 7]
+
+// 引数を指定せず1階層のみフラット化
+console.log(multiArray.flat()) // [ 1, 2, [ 3, [ 4 ] ], 5, 6, 7 ]
+// 2階層フラット化
+console.log(multiArray.flat(2)) // [ 1, 2, 3, [ 4 ], 5, 6, 7 ]
+// 引数に、Infinity を指定して、すべての配列をフラット化
+console.log(multiArray.flat(Infinity)) // [ 1, 2, 3, 4, 5, 6, 7 ]
+```
 
 ### 分割代入
 
