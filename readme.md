@@ -908,8 +908,31 @@ console.log(numberArray)    // [ 1, 15, 30, 50, 200 ]
 console.log(arrayFindResult) // [ 15 ]
 ```
 #### Array.findIndex()
+`Array.findIndex(collback)` は、配列における反復処理の為のメソッドです。
+`Array.find()` と似ていますが、`Array.findIndex()` では、取り出された配列要素に対し、引数で渡されたコールバック関数の戻り値が、最初に `true` になった要素の値の  `index` を返し、要素を見つけた時点で処理を停止します。
+条件に一致する要素が見つからない場合は、`-1` を返します。
 
+`Array.findIndex(collback)` の `collback` コールバック関数が受け取る引数は次の通りです。
+1. 第一引数の `value` へ配列要素が渡される
+2. 第二引数の `index` へ0から始まるindex番号が渡される
+3. 第三引数の `array` へ元の配列が渡される
 
+配列要素を渡していく第一引数は必須ですが、第二引数と第三引数は省略可能です。
+```javascript
+// 数値の配列を宣言
+const numberArray = [1, 15, 30, 50, 200]
+
+const arrayFindIndexResult = numberArray.findIndex((value, index) => {
+	console.log(`value: ${value}, index: ${index}`)
+	// value: 1,    index: 0
+	// value: 15,   index: 1
+
+	// 3で割れる要素を見つけて、最初の index を返す
+	return value % 3 === 0
+})
+console.log(numberArray)    // [ 1, 15, 30, 50, 200 ]
+console.log(arrayFindIndexResult) // 1
+```
 #### Array.every()
 #### Array.some()
 #### Array.reduce()
