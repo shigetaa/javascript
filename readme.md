@@ -1242,5 +1242,63 @@ const personsMap = persons.map((person) => {
 console.log(personsMap) // [ 'name: tanaka, age: 18','name: suzuki, age: 45','name: yamada, age: 51']
 ```
 ## モジュール
+ES2015で登場したJavaScriptのモジュール機能により、外部のリソースをインポートして利用出来る様になりました。
+インポートを利用する前提として、別のファイルで利用したい変数や関数をあらかじめエクスポートしておく必要があります。
+
+便利な変数や関数を再利用できる、モジュール毎にスコープがある事でグローバル変数名に対して上書きしてしまうリスクを回避出来るなど、コードの保守性が高まります。
+
+node.js 等で、モジュールを利用するには`package.json`ファイルにてモジュールを利用を宣言する必要があります。
+```bash
+vi package.json
+```
+```json
+{
+	"type": "module"
+}
+```
+
+Reactでは、モジュールのエクスポートとインポート機能を利用してコンポーネント間における変数や関数のやり取りをします。
+
+エクスポートとインポートには**名前付き** と **デフォルト** があります。
+### 名前付き export と import
+#### 名前付き export
+別のファイルからアクセス出来る様にするため、名前を付けて作成した変数や関数を名前付きでエクスポートします。
+```bash
+vi modules/namedExportModule.js
+```
+```javascript
+// 変数を宣言
+const namedVariable = 'sampleVariable'
+// 関数を宣言
+const namedFunc = () => console.log('sampleFunc')
+// エクスポートを宣言
+export { namedVariable, namedFunc }
+```
+名前付きエクスポートでは、作成した変数や関数の前に `export` を付けることで、作成時の宣言と同時にエクスポートすることもできます。
+```javascript
+// 変数を宣言してエクスポートする
+export const namedVariable = 'sampleVariable'
+// 関数を宣言してエクスポートする
+export const namedFunc = () => console.log('sampleFunc')
+```
+#### 名前付き import
+名前付きエクスポートされた関数や変数を、名前付きインポートします。
+`namedExportModule.js` からエクスポートされている変数 `namedVariable` と 関数 `namedFunc` をインポートするには次の様に記述します。
+```bash
+vi modules/namedImportModule.js
+```
+```javascript
+import { namedVariable, namedFunc } from "./namedExportModule.js";
+
+console.log(namedVariable) // sampleVariable
+namedFunc() // sampleFunc
+```
+実行してみます。
+```bash
+node modules/namedImportModule.js
+sampleVariable
+sampleFunc
+```
+
 
 ## 非同期処理
