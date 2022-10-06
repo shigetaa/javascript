@@ -1,7 +1,8 @@
 // 第一引数の resolve は成功を通知する為の関数
 // 第二引数の reject は失敗を通知する為の関数
 const promise = new Promise((resolve, reject) => {
-	resolve('非同期の処理が成功したことを通知')
+	//resolve('非同期の処理が成功したことを通知')
+	reject('非同期の処理が失敗したことを通知')
 })
 
 // 非同期処理が成功した場合のコールバック関数
@@ -15,4 +16,6 @@ const inCaseOfFailure = () => {
 
 // resolve() で非同期が成功したと言う通知を受け取り
 // then() で成功した場合の処理を実行
-promise.then(inCaseOfSuccess, inCaseOfFailure)
+// reject() で非同期が失敗したと言う通知を受け取り
+// catch() で失敗した場合の処理を実行
+promise.then(inCaseOfSuccess).catch(inCaseOfFailure)

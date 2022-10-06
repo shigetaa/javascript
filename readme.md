@@ -1428,8 +1428,7 @@ const promise = new Promise(statements)
 // 第一引数の resolve は成功を通知する為の関数
 // 第二引数の reject は失敗を通知する為の関数
 const promise = new Promise((resolve, reject) => {
-	resolve('非同期の処理が成功し、resolveが通知された！')
-	reject('非同期の処理が失敗し、reject通知された！')
+	resolve('非同期の処理が成功したことを通知')
 })
 
 // 非同期処理が成功した場合のコールバック関数
@@ -1445,8 +1444,35 @@ const inCaseOfFailure = () => {
 // then() で成功した場合の処理を実行
 promise.then(inCaseOfSuccess, inCaseOfFailure)
 ```
+`resolve()` で非同期処理が成功したという通知を受け取り、`.then()` で受け取った `inCaseOfSuccess` 第一引数のコールバック関数を実行しまうす。
 
+また、`.then()` をつなげていくことで、非同期処理が成功した場合の処理を順番に実行させていくことが出来ます。
+このことを**Promiseチェーン** と言います。
 #### Promise.catch()
+`Promise` オブジェクトにおける非同期処理の失敗した場合の結果を受け取るのが`.catch()` です。処理の失敗を`reject()`で通知されたことにより、つ日のアクションを関連付ける為に使用されます。
+```javascript
+// 第一引数の resolve は成功を通知する為の関数
+// 第二引数の reject は失敗を通知する為の関数
+const promise = new Promise((resolve, reject) => {
+	reject('非同期の処理が失敗したことを通知')
+})
+
+// 非同期処理が成功した場合のコールバック関数
+const inCaseOfSuccess = () => {
+	console.log('非同期の処理が成功し、resolveが通知された。')
+}
+// 非同期処理が失敗した場合のコールバック関数
+const inCaseOfFailure = () => {
+	console.log('非同期の処理が失敗し、rejectが通知された。')
+}
+
+// resolve() で非同期が成功したと言う通知を受け取り
+// then() で成功した場合の処理を実行
+// reject() で非同期が失敗したと言う通知を受け取り
+// catch() で失敗した場合の処理を実行
+promise.then(inCaseOfSuccess).catch(inCaseOfFailure)
+```
+`reject()` での非同期処理が失敗したという通知を受け取り`.then()` の第二引数でも失敗時の処理を受け取る事も出来ますが、視覚的に、`.catch()` を利用した方が見やすいです。
 
 #### throw と エラー処理
 
