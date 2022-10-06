@@ -1300,5 +1300,55 @@ sampleVariable
 sampleFunc
 ```
 
+#### 名前付き export と import の エイリアス(別名)
+エイリアスの仕組みを利用する事で、宣言済みのへ変数や関数に宣言時と異なる名前を指定してインポートする事ができます。
+エイリアスを付ける為には `as` の後ろに別の名前を指定します。
+`namedExportModule.js` からエクスポートされている変数 `namedVariable` を `myVariable` に `namedFunc` を `myFunc` と言う名前でインポートするには下記の様に記述します。
+```javascript
+import { namedVariable as myVariable, namedFunc as myFunc} from "./namedExportModule.js";
+
+console.log(myVariable) // sampleVariable
+myFunc() // sampleFunc
+```
+名前付きエクスポートを `` オブジェクトとしてまとめてインポートする事も出来ます。
+`namedExportModule.js` から `myModule` と言う名前でインポート、
+`myModule.namedVariable`, `myModule.namedFunc` と書いて呼び出します。
+```javascript
+import * as myModule from "./namedExportModule.js";
+
+console.log(myModule.namedVariable) // sampleVariable
+myModule.namedFunc() // sampleFunc
+```
+#### デフォルト export と import
+##### デフォルト expoprt
+デフォルトエクスポートは、モジュール毎に1つだけエクスポート出来る特殊なエクスポートです。
+
+`export default` はファイルごとに**１つだけ**エクスポートする為、インポートする側も何をインポートすればよいのか明確です。
+その為、関数の作成と同時にデフォルトエクスポートする場合、関数名は**省略可能**です。
+```bash
+vi modules/defaultExportModule.js
+```
+```javascript
+export default () => {
+	console.log('defaultFunc')
+}
+```
+複数の変数を同時に作成できる変数については、変数宣言と同時にデフォルトエクスポートすることは出来ないので注意しましょう。
+##### デフォルト import
+名前付きインポートの場合は、`import` の後に `{}` が必要ですが、デフォルトインポートの場合は、`{}` は **不要**です。
+
+また、名前付きエクスポートの場合は、指定したモジュールから同じ変数名や関数名を指定してインポートしますが、デフォルトエクスポートの場合は、**任意の名前**をつけてインポートします。
+```bash
+vi modules/defaultImportModule.js
+```
+```javascript
+import Func from './defaultExportModule.js'
+
+Func() // defaultFunc
+```
+
+#### 再エクスポート
+
+#### HTMLファイルからモジュールを呼び出す
 
 ## 非同期処理
