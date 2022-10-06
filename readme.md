@@ -1310,7 +1310,7 @@ import { namedVariable as myVariable, namedFunc as myFunc} from "./namedExportMo
 console.log(myVariable) // sampleVariable
 myFunc() // sampleFunc
 ```
-名前付きエクスポートを `` オブジェクトとしてまとめてインポートする事も出来ます。
+名前付きエクスポートを `myModule` オブジェクトとしてまとめてインポートする事も出来ます。
 `namedExportModule.js` から `myModule` と言う名前でインポート、
 `myModule.namedVariable`, `myModule.namedFunc` と書いて呼び出します。
 ```javascript
@@ -1370,3 +1370,25 @@ HTMLファイルからモジュールを利用したい場合、JavaScriptを呼
 <script type='module' src='./modules/importModule.js' ></script>
 ```
 ## 非同期処理
+プログラムは通常「同期処理」であり、コードを上から順番に処理していき、１つの処理が終わるまで次の処理は行われません。一方で非同期処理は、ある処理が終わるのを待たずに次の処理を実行して行くため、同時に複数の処理を行います。
+
+何気なく使っているコールバック関数も、何らかしらの関数の処理が完了してから引数で渡された処理をする非同期処理です。
+### setTimeout()
+`setTimeout()` は代表的な非同期処理関数であり、指定された時間が経過したところで1度だけ処理を実行します。
+第一引数にコールバック関数、第二引数にミリ秒単位の時間を渡します。
+```javascript
+// setTimeout 基本構文
+setTimeout(callback関数, ミリ秒単位の時間)
+```
+```javascript
+// 500ミリ後に1度だけ処理が実行される。
+setTimeout(()=>console.log('処理が実行されます'), 500)
+```
+似たような処理で `setInterval()` があります。
+|メソッド|説明|
+|:--|:--|
+|setTimeout(callback, delay)|第二引数に渡された時間が経過した所で一度だけ処理を行う|
+|setInterval(callback, during)|第二引数に渡された時間間隔で、繰り返し処理を実行、指定した時間が経過すると前回の処理が終了していなくても繰り返しの処理が始まる|
+### Promise
+
+### Async Function (async/await)
