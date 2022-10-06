@@ -1346,9 +1346,27 @@ import Func from './defaultExportModule.js'
 
 Func() // defaultFunc
 ```
-
 #### 再エクスポート
+再エクスポートとは、1度インポートしたモジュールを別のファイルが利用できるようにエクスポートし直すことです。
+`export ... from ...` 構文を利用してインポートした直後にエクスポート出来ます。
 
+再エクスポートは、複数のモジュールからエクスポートされたものをまとめてたモジュールをつくる時などに利用されます。
+```javascript
+// namedExportModule から　namedVariable, namedFunc をインポートして
+// 再エクスポート
+export { namedVariable, namedFunc } from './namedExportModule.js'
+
+// namedExportModule から　namedVariable->myVariable, namedFunc->myFunc 
+// 別名インポートして再エクスポート
+export { namedVariable as myVariable, namedFunc as myFunc } from './namedExportModule.js'
+
+// 名前付きエクスポートを myModule オブジェクトとしてまとめてインポートして
+// 再エクスポート
+export * as myModule from './namedExportModule.js'
+```
 #### HTMLファイルからモジュールを呼び出す
-
+HTMLファイルからモジュールを利用したい場合、JavaScriptを呼び出す際に、以下の様に `type` 属性の値に `module` を指定します。
+```html
+<script type='module' src='./modules/importModule.js' ></script>
+```
 ## 非同期処理
