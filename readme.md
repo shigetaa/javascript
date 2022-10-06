@@ -1390,5 +1390,73 @@ setTimeout(()=>console.log('処理が実行されます'), 500)
 |setTimeout(callback, delay)|第二引数に渡された時間が経過した所で一度だけ処理を行う|
 |setInterval(callback, during)|第二引数に渡された時間間隔で、繰り返し処理を実行、指定した時間が経過すると前回の処理が終了していなくても繰り返しの処理が始まる|
 ### Promise
+非同期処理をよりシンプルに扱えるのが `Promise` オブジェクトです。
+実行中の非同期処理を監視し、問題なく処理が完了すれば `resolve` を、問題があれば `reject` を通知します。
+
+`Promise` オブジェクトは、 `Pending` (待機)、`Fulfilled` (成功)、`Rejected` (失敗)の3つの状態を持っていいます。
+
+|状態<br>(PromiseStatus)|説明|次の処理<br>(Callback)|
+|:--|:--|:--|
+|Pending|何らかの処理を実行している状態||
+|Fulfilled|処理が完了して終了した状態|Fulfilled状態なら`.then()`を呼び出す(成功後の処理)|
+|Rejected|処理が失敗で終わった状態|Rejected状態なら`.catch()`を呼び出す(失敗後しの処理)|
+
+`Promise`コンストラクタの基本構文は次の通りです。
+```javascript
+const statements = (resolve, reject) => {
+	// resolve() 成功を通知する為の関数
+	// reject() 失敗を通知する為の関数
+}
+// Promise インスタンスを作成
+const promise = new Promise(statements)
+```
+`statement()`の引数である`resolve`, `reject` はそれぞれが非同期処理の成功と失敗を通知する為の関数です。
+`statement()`の中で、非同期処理が成功した場合は`resolve()`を、失敗した場合には`reject()`を呼び出します。
+
+ここでは最終的な値を返すのでなく、一連の処理を途中の値を持つ`Promise`オブジェクトを返す事により、同期処理と同じように値を返すことができます。
+
+「今は途中の値を返しますが、あとで最終的な値を返します」と約束してくれるのが`Promise`オブジェクトです。
+#### Promise.then()
+`Promise` オブジェクトにおける非同期処理の結果を受けるのが `.then()` です。
+結果が通知されると、次のアクションを関連付けるために使用されます。
+
+`.then()` の第一引数に成功時のコールバック関数、第二引数に失敗時のコールバック関数が渡されます。
+引数で渡されたコールバック関数の戻り値から新たな `Promise` オブジェクトが作成され、作成されたオブジェクトを返します。
+
+`.then()` の第二引数の失敗時のコールバック関数は省略出来ます。
+```javascript
+// 第一引数の resolve は成功を通知する為の関数
+// 第二引数の reject は失敗を通知する為の関数
+const promise = new Promise((resolve, reject) => {
+	resolve('非同期の処理が成功し、resolveが通知された！')
+	reject('非同期の処理が失敗し、reject通知された！')
+})
+
+// 非同期処理が成功した場合のコールバック関数
+const inCaseOfSuccess = () => {
+	console.log('非同期の処理が成功し、resolveが通知された。')
+}
+// 非同期処理が失敗した場合のコールバック関数
+const inCaseOfFailure = () => {
+	console.log('非同期の処理が失敗し、rejectが通知された。')
+}
+
+// resolve() で非同期が成功したと言う通知を受け取り
+// then() で成功した場合の処理を実行
+promise.then(inCaseOfSuccess, inCaseOfFailure)
+```
+
+#### Promise.catch()
+
+#### throw と エラー処理
+
+#### Promise.finally()
+
+#### Promise.all()
+
+#### Promise.race()
 
 ### Async Function (async/await)
+
+#### async
+#### await
