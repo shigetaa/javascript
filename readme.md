@@ -1499,6 +1499,17 @@ promise
 		console.log(error) // 例外が発生 ERROR!
 	})
 ```
+##### try...catch...finally 文
+同期処理の場合 `try...catch...finally` 文を使うことで、発生した例外をキャッチする事ができます。`try` ブロック内で例外が発生すると、`catch` ブロックに処理が移動し、例外が発生した場合の処理を実行します。`fanally` ブロックは例外の有無に関わらず、必ず最後の実行されます。
+```javascript
+try {
+	// 
+} catch(error) {
+	// 例外時に実行
+} finally {
+	// 例外有無に関わらず実行
+}
+```
 #### Promise.finally()
 
 #### Promise.all()
