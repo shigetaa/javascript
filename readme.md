@@ -1511,11 +1511,82 @@ try {
 }
 ```
 #### Promise.finally()
+`.finally()` を利用すると、非同期処理の成功失敗に関わらず実行される
+コールバック関数を登録することができます。
+`Promise` チェーンの最後尾に処理を書きます。
+```javascript
+// 第一引数の resolve は成功を通知する為の関数
+// 第二引数の reject は失敗を通知する為の関数
+const promise = new Promise((resolve, reject) => {
+	resolve('非同期の処理が成功したことを通知')
+	//reject('非同期の処理が失敗したことを通知')
+})
 
+// resolve() で非同期が成功したと言う通知を受け取り
+// then() で成功した場合の処理を実行
+// reject() で非同期が失敗したと言う通知を受け取り
+// catch() で失敗した場合の処理を実行
+promise
+	.then((message) => {
+		// 成功時通知を受け取って処理を実行
+		console.log(message)
+	})
+	.catch((error) => {
+		// 例外エラーを受け取って、エラー時の処理を実行
+		console.log(error)
+	})
+	.finally(() => {
+		// 非同期処理が成功失敗に関わらず実行される
+		console.log('処理が終了しました。')
+	})
+```
 #### Promise.all()
+配列で指定された複数の `Promise` オブジェクトすべての非同期しょりが成功した場合の結果を受け取るのが `.all()` です。
 
+複数の非同期処理を並列に実行し、そのすべてが成功した時点で `.then()` の成功コールバック関数が実行されます。
+`Promise` オブジェクトのいずれか1つでも失敗した場合は `.catch()` の失敗コールバック関数が実行されます。
+```javascript
+const promise1 = new Promise((resolve, reject) => {
+	resolve('promise1 resolve')
+})
+const promise2 = new Promise((resolve, reject) => {
+	resolve('promise2 resolve')
+})
+const promise3 = new Promise((resolve, reject) => {
+	resolve('promise3 resolve')
+})
+// promiseObjects 配列の要素すべて、Promise オブジェクト
+const promiseObjects = [promise1, promise2, promise3]
+
+Promise.all(promiseObjects)
+	.then(()=>console.log('すべての非同期処理が成功しました'))
+	.catch(()=>console.log('非同期処理が失敗しました'))
+	.finally(()=>console.log('処理実行が終了しました'))
+```
 #### Promise.race()
+配列で指定された複数の `Promise` オブジェクトのうち、最初に状態が変わったという通知を受けたものを実行するのが `race()` です。
 
+複数の非同期処理を並列に実行し、最初に応答があった時点での成功または失敗のコールバック関数が1度だけ実行されます。
+```javascript
+const promise1 = new Promise((resolve, reject) => {
+	resolve('promise1 resolve')
+	//reject('promise1 reject')
+})
+const promise2 = new Promise((resolve, reject) => {
+	//resolve('promise2 resolve')
+	reject('promise2 reject')
+})
+const promise3 = new Promise((resolve, reject) => {
+	resolve('promise3 resolve')
+})
+// promiseObjects 配列の要素すべて、Promise オブジェクト
+const promiseObjects = [promise1, promise2, promise3]
+
+Promise.race(promiseObjects)
+	.then(() => console.log('すべての非同期処理が成功しました'))
+	.catch(() => console.log('非同期処理が失敗しました'))
+	.finally(() => console.log('処理実行が終了しました'))
+```
 ### Async Function (async/await)
 
 #### async
