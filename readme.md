@@ -1588,6 +1588,25 @@ Promise.race(promiseObjects)
 	.finally(() => console.log('処理実行が終了しました'))
 ```
 ### Async Function (async/await)
+`Async Function` を利用すると、`Promise` をシンプルに扱うことが出来ます。
+`Promise` オブジェクトの上に作られており、非同期処理を行う「`Promise` インスタンスを返す関数」を定義する構文で、`await` 文は、`Async FUnction` の中でのみ利用できます。
 
+`Async Function(async/await)` を利用する事で、非同期関数を同期関数の様に呼び出すことが出来ます。
 #### async
+関数の前に `async` を付けるだけで非同期関数 `async function` を定義出来ます。
+```javascript
+// アロー関数で async function を宣言
+const asyncSampleFunc = async () => {}
+```
+```javascript
+const sampleFunc = async () => {
+	return 'これは非同期関数です。'
+}
+console.log(sampleFunc()) // Promise { 'これは非同期関数です。' }
+
+console.log(sampleFunc().then((value) => console.log(value)))
+// Promise { <pending> }
+// これは非同期関数です。
+```
+戻り値が `Promise` オブジェクトである事が確認できます。
 #### await
