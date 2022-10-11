@@ -1610,3 +1610,68 @@ console.log(sampleFunc().then((value) => console.log(value)))
 ```
 戻り値が `Promise` オブジェクトである事が確認できます。
 #### await
+`await` は `async function` 内でのみ利用出来ます。
+`Promise` の状態の通知( `resolve` / `reject` ) が返されるまで処理を停止して待機し、`Promise` の状態が変わったとの通知を受け取ると次の処理を再開します。
+```javascript
+// アロー関数で async function を宣言
+const asyncSampleFunc = async () => {
+	// Promise の状態が変わるまで待機
+	await Promise インスタンス
+	// Promise の状態が変わると、次の処理を再開
+}
+```
+`await` を利用すると、非同期の処理が完了するまで次の処理を実行しないため、非同期処理が同期処理の様に上から下へと順番に実行する様な処理になります。
+```javascript
+const asyncWaitFunc = async (num) => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(`${num} 処理実行`)
+		}, 1000 * num)
+	}).then((message) => console.log(message))
+}
+// await を利用する事で同期的に処理が可能
+const testFunc = async () => {
+	console.log('1 処理開始')
+	await asyncWaitFunc(1)
+	console.log('2 処理開始')
+	await asyncWaitFunc(2)
+	console.log('3 処理開始')
+	await asyncWaitFunc(3)
+}
+
+testFunc()
+// 1 処理開始
+// 1 処理実行
+// 2 処理開始
+// 2 処理実行
+// 3 処理開始
+// 3 処理実行
+```
+次に、 `await` を付けないと場合の動作は以下の様になります。
+```javascript
+const asyncWaitFunc = async (num) => {
+	return new Promise((resolve) => {
+		setTimeout(() => {
+			resolve(`${num} 処理実行`)
+		}, 1000 * num)
+	}).then((message) => console.log(message))
+}
+const testFunc = async () => {
+	console.log('1 処理開始')
+	asyncWaitFunc(1)
+	console.log('2 処理開始')
+	asyncWaitFunc(2)
+	console.log('3 処理開始')
+	asyncWaitFunc(3)
+}
+
+testFunc()
+// 1 処理開始
+// 2 処理開始
+// 3 処理開始
+// 1 処理実行
+// 2 処理実行
+// 3 処理実行
+```
+
+`async / await` を利用することで、非同期処理が、同期処理的な形で利用できるようになります。
